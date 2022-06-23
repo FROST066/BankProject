@@ -35,34 +35,32 @@ public final class mainJframe21 extends javax.swing.JFrame {
         initComponents();
         init0();
         c=retraitButton.getBackground();
+        initMenu();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
-        usernameLabel = new javax.swing.JLabel();
-        userComboBox = new javax.swing.JComboBox<>();
-        compteLabel = new javax.swing.JLabel();
-        compteComboBox = new javax.swing.JComboBox<>();
-        typeCompteLabel = new javax.swing.JLabel();
-        soldeLabel = new javax.swing.JLabel();
-        soldeIntLabel = new javax.swing.JLabel();
-        interetLabel = new javax.swing.JLabel();
-        empruntLabel = new javax.swing.JLabel();
-        intEmpruntLabel = new javax.swing.JLabel();
-        retraitButton = new javax.swing.JButton();
-        depotButton = new javax.swing.JButton();
-        virementButton = new javax.swing.JButton();
-        empruntButton = new javax.swing.JButton();
-        interetIntLabel = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-
-        jMenu1.setText("jMenu1");
+        userComboBox = new javax.swing.JComboBox<>();
+        usernameLabel = new javax.swing.JLabel();
+        compteLabel = new javax.swing.JLabel();
+        compteComboBox = new javax.swing.JComboBox<>();
+        virementButton = new javax.swing.JButton();
+        depotButton = new javax.swing.JButton();
+        retraitButton = new javax.swing.JButton();
+        typeCompteLabel = new javax.swing.JLabel();
+        soldeIntLabel = new javax.swing.JLabel();
+        soldeLabel = new javax.swing.JLabel();
+        interetLabel = new javax.swing.JLabel();
+        interetIntLabel = new javax.swing.JLabel();
+        empruntLabel = new javax.swing.JLabel();
+        intEmpruntLabel = new javax.swing.JLabel();
+        empruntButton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion Utilisateur");
@@ -75,14 +73,18 @@ public final class mainJframe21 extends javax.swing.JFrame {
             }
         });
 
-        usernameLabel.setFont(new java.awt.Font("Liberation Sans", 1, 17)); // NOI18N
-        usernameLabel.setText("Nom");
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bank-icon.png"))); // NOI18N
 
         userComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userComboBoxActionPerformed(evt);
             }
         });
+
+        usernameLabel.setFont(new java.awt.Font("Liberation Sans", 1, 17)); // NOI18N
+        usernameLabel.setText("Nom");
 
         compteLabel.setFont(new java.awt.Font("Liberation Sans", 1, 17)); // NOI18N
         compteLabel.setText("Compte");
@@ -93,21 +95,16 @@ public final class mainJframe21 extends javax.swing.JFrame {
             }
         });
 
-        typeCompteLabel.setFont(new java.awt.Font("Sahadeva", 0, 24)); // NOI18N
-        typeCompteLabel.setText("type de compte");
+        virementButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mobile_banking_credit_card_icon_205086.png"))); // NOI18N
+        virementButton.setText("Virement");
 
-        soldeLabel.setFont(new java.awt.Font("Likhan", 0, 18)); // NOI18N
-        soldeLabel.setText("Solde:");
-
-        soldeIntLabel.setText("0");
-
-        interetLabel.setFont(new java.awt.Font("Likhan", 0, 18)); // NOI18N
-        interetLabel.setText("Interet: ");
-
-        empruntLabel.setFont(new java.awt.Font("Likhan", 0, 18)); // NOI18N
-        empruntLabel.setText("Nombre d'emprunt: ");
-
-        intEmpruntLabel.setText("0");
+        depotButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/depot2.png"))); // NOI18N
+        depotButton.setText("  Depot");
+        depotButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depotButtonActionPerformed(evt);
+            }
+        });
 
         retraitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/retrait2.png"))); // NOI18N
         retraitButton.setText(" Retrait");
@@ -126,25 +123,99 @@ public final class mainJframe21 extends javax.swing.JFrame {
             }
         });
 
-        depotButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/depot2.png"))); // NOI18N
-        depotButton.setText("  Depot");
-        depotButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                depotButtonActionPerformed(evt);
-            }
-        });
+        typeCompteLabel.setFont(new java.awt.Font("Sahadeva", 0, 24)); // NOI18N
+        typeCompteLabel.setText("type de compte");
 
-        virementButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mobile_banking_credit_card_icon_205086.png"))); // NOI18N
-        virementButton.setText("Virement");
+        soldeIntLabel.setText("0");
+
+        soldeLabel.setFont(new java.awt.Font("Likhan", 0, 18)); // NOI18N
+        soldeLabel.setText("Solde:");
+
+        interetLabel.setFont(new java.awt.Font("Likhan", 0, 18)); // NOI18N
+        interetLabel.setText("Interet: ");
+
+        interetIntLabel.setText("0");
+
+        empruntLabel.setFont(new java.awt.Font("Likhan", 0, 18)); // NOI18N
+        empruntLabel.setText("Nombre d'emprunt: ");
+
+        intEmpruntLabel.setText("0");
 
         empruntButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/emprunt.png"))); // NOI18N
         empruntButton.setText("Emprunt");
 
-        interetIntLabel.setText("0");
-
-        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bank-icon.png"))); // NOI18N
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(typeCompteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(interetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(interetIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(soldeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(soldeIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(retraitButton))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(empruntLabel)
+                                .addGap(31, 31, 31)
+                                .addComponent(intEmpruntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(depotButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(empruntButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(virementButton))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(userComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(compteLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(compteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(67, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameLabel)
+                    .addComponent(compteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(compteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(typeCompteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(retraitButton)
+                        .addComponent(depotButton)
+                        .addComponent(virementButton)
+                        .addComponent(soldeIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(soldeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(interetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(interetIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(empruntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(intEmpruntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(empruntButton))
+                .addContainerGap(97, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,167 +224,38 @@ public final class mainJframe21 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(jLabel1)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 776, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 72, Short.MAX_VALUE)
-        );
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(typeCompteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(interetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(interetIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(soldeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(soldeIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(retraitButton))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(empruntLabel)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(intEmpruntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(depotButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(empruntButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(virementButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(userComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(compteLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(compteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usernameLabel)
-                            .addComponent(compteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(compteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addComponent(typeCompteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(retraitButton)
-                                .addComponent(depotButton)
-                                .addComponent(virementButton)
-                                .addComponent(soldeIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(soldeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(interetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(interetIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(empruntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(intEmpruntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(empruntButton))
-                        .addContainerGap(187, Short.MAX_VALUE))
-                    .addComponent(jSeparator1)))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 159, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void userComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userComboBoxActionPerformed
-        try {
-            initComboxCompte();
-            initTableau();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-
-    }//GEN-LAST:event_userComboBoxActionPerformed
-
-    private void retraitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retraitButtonActionPerformed
-        try {
-            System.out.println("Entrer dans la fonction retrait");
-            SpinnerNumberModel sModel = new SpinnerNumberModel(1,1,actuAccountSolde,1);
-            JSpinner spinner = new JSpinner(sModel);
-            //JOptionPane.showMessageDialog(null, spinner);
-
-            int option = JOptionPane.showOptionDialog(null, spinner, "Entrer le montant a retirer", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(""), null, null);
-             if (option == JOptionPane.OK_OPTION) {
-              actuAccountSolde = actuAccountSolde - (int) spinner.getValue();
-            }
-          //  actuAccountSolde = actuAccountSolde - (int) JOptionPane.showInputDialog(null, "Entrez la somme a retirer ", "Retrait", 1, new ImageIcon(""), null, "");
-
-           // JOptionPane.showInputDialog(null, "Entrez la somme a retirer ", "Retrait", 1, new ImageIcon(""), null, "");
-
-            String query = "UPDATE account SET solde ="+actuAccountSolde+" WHERE accountID=?";
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, actuAccounIDtList.get(compteComboBox.getSelectedIndex()));
-            ps.executeUpdate();
-            initTableau();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }//GEN-LAST:event_retraitButtonActionPerformed
-
-    private void depotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depotButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depotButtonActionPerformed
-
-    private void compteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compteComboBoxActionPerformed
-        try {
-            initTableau();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-
-    }//GEN-LAST:event_compteComboBoxActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try {
@@ -323,13 +265,68 @@ public final class mainJframe21 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
-    private void retraitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retraitButtonMouseEntered
-        retraitButton.setBackground(new Color(51, 153, 255));
-    }//GEN-LAST:event_retraitButtonMouseEntered
+    private void retraitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retraitButtonActionPerformed
+        try {
+            System.out.println("Entrer dans la fonction retrait");
+            SpinnerNumberModel sModel = new SpinnerNumberModel(1, 1, actuAccountSolde, 1);
+            JSpinner spinner = new JSpinner(sModel);
+            int option = JOptionPane.showOptionDialog(null, spinner, "Entrer le montant a retirer", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(""), null, null);
+            if (option == JOptionPane.OK_OPTION) {
+                actuAccountSolde = actuAccountSolde - (int) spinner.getValue();
+            }
+            String query = "UPDATE account SET solde =" + actuAccountSolde + " WHERE accountID=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, actuAccounIDtList.get(compteComboBox.getSelectedIndex()));
+            ps.executeUpdate();
+            initTableau();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_retraitButtonActionPerformed
 
     private void retraitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retraitButtonMouseExited
         retraitButton.setBackground(c);
     }//GEN-LAST:event_retraitButtonMouseExited
+
+    private void retraitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retraitButtonMouseEntered
+        retraitButton.setBackground(new Color(51, 153, 255));
+    }//GEN-LAST:event_retraitButtonMouseEntered
+
+    private void depotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depotButtonActionPerformed
+        try {
+            System.out.println("Entrer dans la fonction depot");
+            SpinnerNumberModel sModel = new SpinnerNumberModel(1, 1, 1000000, 1);
+            JSpinner spinner = new JSpinner(sModel);
+            int option = JOptionPane.showOptionDialog(null, spinner, "Entrer le montant a deposer", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(""), null, null);
+            if (option == JOptionPane.OK_OPTION) {
+                actuAccountSolde = actuAccountSolde + (int) spinner.getValue();
+            }
+            String query = "UPDATE account SET solde =" + actuAccountSolde + " WHERE accountID=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, actuAccounIDtList.get(compteComboBox.getSelectedIndex()));
+            ps.executeUpdate();
+            initTableau();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_depotButtonActionPerformed
+
+    private void compteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compteComboBoxActionPerformed
+        try {
+            initTableau();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_compteComboBoxActionPerformed
+
+    private void userComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userComboBoxActionPerformed
+        try {
+            initComboxCompte();
+            initTableau();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_userComboBoxActionPerformed
 
     /*public static void main(String args[]) throws UnsupportedLookAndFeelException {
         try {
@@ -372,10 +369,9 @@ public final class mainJframe21 extends javax.swing.JFrame {
     private javax.swing.JLabel interetIntLabel;
     private javax.swing.JLabel interetLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton retraitButton;
     private javax.swing.JLabel soldeIntLabel;
     private javax.swing.JLabel soldeLabel;
@@ -499,13 +495,13 @@ public final class mainJframe21 extends javax.swing.JFrame {
         utilisateur.addSeparator();
         JMenuItem updateUser = new JMenuItem("Modifier Utilisateur");
         utilisateur.add(updateUser);
-      //  jMenuBar1.add(utilisateur);
+        jMenuBar1.add(utilisateur);
         
         JMenu compte = new JMenu("Compte");
         JMenuItem searchAccount = new JMenuItem("Rechercher un compte");
         compte.add(searchAccount);
         utilisateur.add(searchUser);
-       // jMenuBar1.add(compte);
+        jMenuBar1.add(compte);
     }
 
     public void createUser() {
