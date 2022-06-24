@@ -372,11 +372,13 @@ public final class mainJframe21 extends javax.swing.JFrame {
             if (option == JOptionPane.OK_OPTION) {
                 actuAccountSolde = actuAccountSolde + (int) spinner.getValue();
             }
+            
             String query = "UPDATE account SET solde =" + actuAccountSolde + " WHERE accountID=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, actuAccounIDtList.get(compteComboBox.getSelectedIndex()));
             ps.executeUpdate();
             initTableau();
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
