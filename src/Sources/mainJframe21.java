@@ -35,6 +35,7 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
         userList = new ArrayList<>();
         actuAccounIDtList = new ArrayList<>();
+        actuLoanIDtList = new ArrayList<>();
         initComponents();
         init0();
         c = retraitButton.getBackground();
@@ -164,6 +165,11 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
         ownerNameEditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
         ownerNameEditButton.setText("Modifier");
+        ownerNameEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ownerNameEditButtonActionPerformed(evt);
+            }
+        });
 
         editInteretButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
         editInteretButton1.setText("Modifier");
@@ -263,7 +269,6 @@ public final class mainJframe21 extends javax.swing.JFrame {
                             .addComponent(compteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(typeCompteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(retraitButton)
@@ -380,6 +385,7 @@ public final class mainJframe21 extends javax.swing.JFrame {
     private void compteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compteComboBoxActionPerformed
         try {
             initTableau();
+            initLoan();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -389,6 +395,7 @@ public final class mainJframe21 extends javax.swing.JFrame {
         try {
             initComboxCompte();
             initTableau();
+            initLoan();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -415,6 +422,10 @@ public final class mainJframe21 extends javax.swing.JFrame {
     private void addLoanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLoanButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addLoanButtonActionPerformed
+
+    private void ownerNameEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerNameEditButtonActionPerformed
+        editOwnerName();
+    }//GEN-LAST:event_ownerNameEditButtonActionPerformed
 
     /*public static void main(String args[]) throws UnsupportedLookAndFeelException {
         try {
@@ -475,6 +486,7 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
     private ArrayList<String> userList;
     private Connection conn;
+   private ArrayList<String> actuLoanIDtList;
     private ArrayList<String> actuAccounIDtList;
     private Color c;
     private int actuAccountSolde;
@@ -560,19 +572,32 @@ public final class mainJframe21 extends javax.swing.JFrame {
             actuAccountSolde = rst.getInt("solde");
             soldeIntLabel.setText(rst.getString("solde"));
             interetIntLabel.setText(rst.getString("interet"));
-
-            query = "select amount,mensuality from loan where courantID=?";
-            PreparedStatement psr = conn.prepareStatement(query);
-            psr.setString(1, actuAccounIDtList.get(compteComboBox.getSelectedIndex()));
-            ResultSet rstr = ps.executeQuery();
-            while (rstr.next()) {
-            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
 
     }
 
+    private void initLoan() {
+        System.out.println("Entrer dans la fonction initComboLoan");
+        actuLoanIDtList.clear();
+        loanComboBox.removeAll();
+        loanComboBox.removeAllItems();
+        if (compteComboBox.getItemCount() > 0) try {
+            String query = "select loanID from loan where courantID=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, actuAccounIDtList.get(compteComboBox.getSelectedIndex()));
+            ResultSet rst = ps.executeQuery();
+            while (rst.next()) {
+                actuLoanIDtList.add(rst.getString("loanID"));
+                loanComboBox.addItem("" + actuLoanIDtList.size());
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        System.out.println("la fonction initComboLoan fini");
+    }
+    
     public void closeConn() throws SQLException {
         this.conn.close();
         System.out.println("Fermeture de la connection");
@@ -627,6 +652,20 @@ public final class mainJframe21 extends javax.swing.JFrame {
         }
     }
 
+    
+    private void editOwnerName(){
+    try {
+            String name = (String) JOptionPane.showInputDialog(null, "Entrez le nouveau nom du proprietaire ", "Modifier nom du Proprietaire", 1, new ImageIcon(""), null, "");
+            if (!(name == null)) {
+                String query = "update user set name=? where userid="+userList.get(userComboBox.getSelectedIndex());
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, name);
+                if (ps.executeUpdate() == 1) init0();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
     public void init0() throws SQLException {
         userList.clear();
         actuAccounIDtList.clear();
@@ -634,9 +673,13 @@ public final class mainJframe21 extends javax.swing.JFrame {
         compteComboBox.removeAll();
         userComboBox.removeAllItems();
         userComboBox.removeAll();
+        actuLoanIDtList.clear();
+        loanComboBox.removeAll();
+        loanComboBox.removeAllItems();
         initcomboxUser();
         initComboxCompte();
         initTableau();
+        initLoan();
     }
 
 }
