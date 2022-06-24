@@ -143,7 +143,7 @@ public final class mainJframe21 extends javax.swing.JFrame {
         interetIntLabel.setText("0");
 
         empruntLabel.setFont(new java.awt.Font("Likhan", 0, 18)); // NOI18N
-        empruntLabel.setText("Les emprunts");
+        empruntLabel.setText("Les prets");
 
         addUserButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
         addUserButton.setText("Ajouter");
@@ -173,6 +173,12 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
         editInteretButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
         editInteretButton1.setText("Modifier");
+        editInteretButton1.setToolTipText("Modifier l'interet du compte");
+        editInteretButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editInteretButton1ActionPerformed(evt);
+            }
+        });
 
         loanComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,7 +188,7 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
         addLoanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
         addLoanButton.setText("Ajouter");
-        addLoanButton.setToolTipText("Ajouter un compte");
+        addLoanButton.setToolTipText("Faire un pret");
         addLoanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addLoanButtonActionPerformed(evt);
@@ -191,6 +197,7 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
         manageLoanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion.png"))); // NOI18N
         manageLoanButton.setText("Gerer");
+        manageLoanButton.setToolTipText("Afficher et modifier le pret");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -428,6 +435,23 @@ public final class mainJframe21 extends javax.swing.JFrame {
     private void ownerNameEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerNameEditButtonActionPerformed
         editOwnerName();
     }//GEN-LAST:event_ownerNameEditButtonActionPerformed
+
+    private void editInteretButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editInteretButton1ActionPerformed
+        try {
+            SpinnerNumberModel sModel = new SpinnerNumberModel(1, 1, 100, 1);
+            JSpinner spinner = new JSpinner(sModel);
+            int option = JOptionPane.showOptionDialog(null, spinner, "Entrer le montant a deposer", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(""), null, null);
+            if (option == JOptionPane.OK_OPTION) {
+                String query = "UPDATE account SET interet =" + (double) spinner.getValue() + " WHERE accountID=?";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, actuAccounIDtList.get(compteComboBox.getSelectedIndex()));
+                ps.executeUpdate();
+                initTableau();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_editInteretButton1ActionPerformed
 
     /*public static void main(String args[]) throws UnsupportedLookAndFeelException {
         try {

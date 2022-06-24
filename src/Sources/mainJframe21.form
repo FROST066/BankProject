@@ -331,7 +331,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Likhan" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Les emprunts"/>
+                <Property name="text" type="java.lang.String" value="Les prets"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="addUserButton">
@@ -377,7 +377,11 @@
                   <Image iconType="3" name="/edit.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Modifier"/>
+                <Property name="toolTipText" type="java.lang.String" value="Modifier l&apos;interet du compte"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editInteretButton1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="loanComboBox">
               <Properties>
@@ -398,7 +402,7 @@
                   <Image iconType="3" name="/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ajouter"/>
-                <Property name="toolTipText" type="java.lang.String" value="Ajouter un compte"/>
+                <Property name="toolTipText" type="java.lang.String" value="Faire un pret"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addLoanButtonActionPerformed"/>
@@ -410,6 +414,7 @@
                   <Image iconType="3" name="/gestion.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Gerer"/>
+                <Property name="toolTipText" type="java.lang.String" value="Afficher et modifier le pret"/>
               </Properties>
             </Component>
           </SubComponents>
