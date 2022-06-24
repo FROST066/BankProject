@@ -4,15 +4,18 @@
  */
 package Sources;
 
+import GUI.createAccount;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -29,13 +32,12 @@ public final class mainJframe21 extends javax.swing.JFrame {
         setBackground(new Color(51, 133, 255));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.conn = conn;
-      
+
         userList = new ArrayList<>();
         actuAccounIDtList = new ArrayList<>();
         initComponents();
         init0();
-        c=retraitButton.getBackground();
-        initMenu();
+        c = retraitButton.getBackground();
     }
 
     @SuppressWarnings("unchecked")
@@ -49,7 +51,6 @@ public final class mainJframe21 extends javax.swing.JFrame {
         usernameLabel = new javax.swing.JLabel();
         compteLabel = new javax.swing.JLabel();
         compteComboBox = new javax.swing.JComboBox<>();
-        virementButton = new javax.swing.JButton();
         depotButton = new javax.swing.JButton();
         retraitButton = new javax.swing.JButton();
         typeCompteLabel = new javax.swing.JLabel();
@@ -58,15 +59,21 @@ public final class mainJframe21 extends javax.swing.JFrame {
         interetLabel = new javax.swing.JLabel();
         interetIntLabel = new javax.swing.JLabel();
         empruntLabel = new javax.swing.JLabel();
-        intEmpruntLabel = new javax.swing.JLabel();
-        empruntButton = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        addUserButton = new javax.swing.JButton();
+        addAccountButton = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        ownerNameEditButton = new javax.swing.JButton();
+        editInteretButton1 = new javax.swing.JButton();
+        loanComboBox = new javax.swing.JComboBox<>();
+        addLoanButton = new javax.swing.JButton();
+        manageLoanButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion Utilisateur");
         setBackground(new java.awt.Color(51, 153, 255));
         setForeground(new java.awt.Color(51, 153, 255));
         setLocation(new java.awt.Point(0, 0));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -74,6 +81,7 @@ public final class mainJframe21 extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.setNextFocusableComponent(usernameLabel);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bank-icon.png"))); // NOI18N
 
@@ -84,7 +92,7 @@ public final class mainJframe21 extends javax.swing.JFrame {
         });
 
         usernameLabel.setFont(new java.awt.Font("Liberation Sans", 1, 17)); // NOI18N
-        usernameLabel.setText("Nom");
+        usernameLabel.setText("Proprietaire");
 
         compteLabel.setFont(new java.awt.Font("Liberation Sans", 1, 17)); // NOI18N
         compteLabel.setText("Compte");
@@ -94,9 +102,6 @@ public final class mainJframe21 extends javax.swing.JFrame {
                 compteComboBoxActionPerformed(evt);
             }
         });
-
-        virementButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mobile_banking_credit_card_icon_205086.png"))); // NOI18N
-        virementButton.setText("Virement");
 
         depotButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/depot2.png"))); // NOI18N
         depotButton.setText("  Depot");
@@ -137,84 +142,150 @@ public final class mainJframe21 extends javax.swing.JFrame {
         interetIntLabel.setText("0");
 
         empruntLabel.setFont(new java.awt.Font("Likhan", 0, 18)); // NOI18N
-        empruntLabel.setText("Nombre d'emprunt: ");
+        empruntLabel.setText("Les emprunts");
 
-        intEmpruntLabel.setText("0");
+        addUserButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        addUserButton.setText("Ajouter");
+        addUserButton.setToolTipText("Ajouter un nouvel utilisateur");
+        addUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserButtonActionPerformed(evt);
+            }
+        });
 
-        empruntButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/emprunt.png"))); // NOI18N
-        empruntButton.setText("Emprunt");
+        addAccountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        addAccountButton.setText("Ajouter");
+        addAccountButton.setToolTipText("Ajouter un compte");
+        addAccountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAccountButtonActionPerformed(evt);
+            }
+        });
+
+        ownerNameEditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
+        ownerNameEditButton.setText("Modifier");
+
+        editInteretButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
+        editInteretButton1.setText("Modifier");
+
+        loanComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loanComboBoxActionPerformed(evt);
+            }
+        });
+
+        addLoanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        addLoanButton.setText("Ajouter");
+        addLoanButton.setToolTipText("Ajouter un compte");
+        addLoanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addLoanButtonActionPerformed(evt);
+            }
+        });
+
+        manageLoanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion.png"))); // NOI18N
+        manageLoanButton.setText("Gerer");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(compteLabel)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(empruntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loanComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addLoanButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(manageLoanButton))
                     .addComponent(typeCompteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(interetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(interetIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(compteComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(userComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(addUserButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ownerNameEditButton))
+                            .addComponent(addAccountButton)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(soldeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
-                                .addComponent(soldeIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(retraitButton))
+                                .addComponent(soldeIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(empruntLabel)
-                                .addGap(31, 31, 31)
-                                .addComponent(intEmpruntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(depotButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(empruntButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(virementButton))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(userComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(compteLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(compteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                                .addComponent(interetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(interetIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editInteretButton1)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(retraitButton)
+                                .addGap(19, 19, 19)
+                                .addComponent(depotButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usernameLabel)
-                    .addComponent(compteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(compteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addUserButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ownerNameEditButton)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(usernameLabel)
+                                    .addComponent(userComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 3, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(compteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(compteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(typeCompteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(retraitButton)
                         .addComponent(depotButton)
-                        .addComponent(virementButton)
                         .addComponent(soldeIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(soldeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(interetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(interetIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(interetIntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editInteretButton1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(empruntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(intEmpruntLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(empruntButton))
-                .addContainerGap(97, Short.MAX_VALUE))
+                    .addComponent(loanComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addLoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageLoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -224,34 +295,29 @@ public final class mainJframe21 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(103, 103, 103)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -328,6 +394,28 @@ public final class mainJframe21 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_userComboBoxActionPerformed
 
+    private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
+
+        createUser();
+    }//GEN-LAST:event_addUserButtonActionPerformed
+
+    private void addAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAccountButtonActionPerformed
+        try {
+            addAccount();
+            init0();
+        } catch (SQLException ex) {
+            Logger.getLogger(mainJframe21.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_addAccountButtonActionPerformed
+
+    private void loanComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loanComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loanComboBoxActionPerformed
+
+    private void addLoanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLoanButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addLoanButtonActionPerformed
+
     /*public static void main(String args[]) throws UnsupportedLookAndFeelException {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -360,50 +448,53 @@ public final class mainJframe21 extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addAccountButton;
+    private javax.swing.JButton addLoanButton;
+    private javax.swing.JButton addUserButton;
     private javax.swing.JComboBox<String> compteComboBox;
     private javax.swing.JLabel compteLabel;
     private javax.swing.JButton depotButton;
-    private javax.swing.JButton empruntButton;
+    private javax.swing.JButton editInteretButton1;
     private javax.swing.JLabel empruntLabel;
-    private javax.swing.JLabel intEmpruntLabel;
     private javax.swing.JLabel interetIntLabel;
     private javax.swing.JLabel interetLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JComboBox<String> loanComboBox;
+    private javax.swing.JButton manageLoanButton;
+    private javax.swing.JButton ownerNameEditButton;
     private javax.swing.JButton retraitButton;
     private javax.swing.JLabel soldeIntLabel;
     private javax.swing.JLabel soldeLabel;
     private javax.swing.JLabel typeCompteLabel;
     private javax.swing.JComboBox<String> userComboBox;
     private javax.swing.JLabel usernameLabel;
-    private javax.swing.JButton virementButton;
     // End of variables declaration//GEN-END:variables
 
     private ArrayList<String> userList;
     private Connection conn;
     private ArrayList<String> actuAccounIDtList;
-    private Color  c;
+    private Color c;
     private int actuAccountSolde;
-    
+
     public void allActivate(boolean a) {
         typeCompteLabel.setEnabled(a);
         soldeLabel.setEnabled(a);
         soldeIntLabel.setEnabled(a);
         depotButton.setEnabled(a);
         retraitButton.setEnabled(a);
-        virementButton.setEnabled(a);
-         interetLabel.setEnabled(a);
+        interetLabel.setEnabled(a);
         interetIntLabel.setEnabled(a);
+        editInteretButton1.setEnabled(a);
         empruntLabel.setEnabled(a);
-        intEmpruntLabel.setEnabled(a);
-        empruntButton.setEnabled(a);
+        loanComboBox.setEnabled(a);
+        addLoanButton.setEnabled(a);
         if (!a) {
             typeCompteLabel.setText("");
             soldeIntLabel.setText("");
             interetIntLabel.setText("");
-            intEmpruntLabel.setText("");
         }
 
     }
@@ -452,22 +543,30 @@ public final class mainJframe21 extends javax.swing.JFrame {
             allActivate(false);
         } else
             try {
-                allActivate(true);
+            allActivate(true);
             String query = "select * from account where accountID=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, actuAccounIDtList.get(compteComboBox.getSelectedIndex()));
             ResultSet rst = ps.executeQuery();
             if (rst.getInt("isNormal") == 0) {
                 typeCompteLabel.setText("Compte Epargne");
-                empruntButton.setEnabled(false);
                 empruntLabel.setEnabled(false);
-                intEmpruntLabel.setEnabled(false);
+                loanComboBox.setEnabled(false);
+                addLoanButton.setEnabled(false);
+
             } else {
-                typeCompteLabel.setText("Compte Epargne");
+                typeCompteLabel.setText("Compte Courant");
             }
-            actuAccountSolde=rst.getInt("solde");
+            actuAccountSolde = rst.getInt("solde");
             soldeIntLabel.setText(rst.getString("solde"));
             interetIntLabel.setText(rst.getString("interet"));
+
+            query = "select amount,mensuality from loan where courantID=?";
+            PreparedStatement psr = conn.prepareStatement(query);
+            psr.setString(1, actuAccounIDtList.get(compteComboBox.getSelectedIndex()));
+            ResultSet rstr = ps.executeQuery();
+            while (rstr.next()) {
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -479,44 +578,51 @@ public final class mainJframe21 extends javax.swing.JFrame {
         System.out.println("Fermeture de la connection");
     }
 
-    public void initMenu() {
-        JMenu utilisateur = new JMenu("Utilisateur");
-        JMenuItem createUser = new JMenuItem("Nouveau Utilisateur");
-        utilisateur.add(createUser);
-        createUser.addActionListener((ActionEvent e) -> {
-            createUser();
-        });
-        utilisateur.addSeparator();
-        JMenuItem searchUser = new JMenuItem("Rechercher Utilisateur");
-        utilisateur.add(searchUser);
-        utilisateur.addSeparator();
-        JMenuItem dropUser = new JMenuItem("Supprimer Utilisateur");
-        utilisateur.add(dropUser);
-        utilisateur.addSeparator();
-        JMenuItem updateUser = new JMenuItem("Modifier Utilisateur");
-        utilisateur.add(updateUser);
-        jMenuBar1.add(utilisateur);
-        
-        JMenu compte = new JMenu("Compte");
-        JMenuItem searchAccount = new JMenuItem("Rechercher un compte");
-        compte.add(searchAccount);
-        utilisateur.add(searchUser);
-        jMenuBar1.add(compte);
-    }
-
     public void createUser() {
         try {
-            String query = "insert into user(name) values (\"" + (String) JOptionPane.showInputDialog(null, "Entrez un nom ", "Nouvel utilisateur", 1, new ImageIcon(""), null, "") + "\")";
-            PreparedStatement ps = conn.prepareStatement(query);
-            System.out.println(query);
-            int rst = 0;
-            rst = ps.executeUpdate();
-            if (rst != 0) {
-                System.out.println("Compte cree");
-                init0();
+            String name = (String) JOptionPane.showInputDialog(null, "Entrez un nom ", "Nouvel utilisateur", 1, new ImageIcon(""), null, "");
+            if (!(name == null)) {
+                String query = "insert into user(name) values (?)";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, name);
+                if (ps.executeUpdate() == 1) init0();
             }
-
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    private void addAccount() {
+        try {
+            System.out.println("ENtrer dans la fonctiion addAccount");
+            JCheckBox courantCheck = new JCheckBox("Compte courant");
+            JCheckBox epargneCheck = new JCheckBox("Compte epargne");
+
+            courantCheck.addActionListener((java.awt.event.ActionEvent evt) -> {
+                epargneCheck.setSelected(!courantCheck.isSelected());
+            });
+            epargneCheck.addActionListener((java.awt.event.ActionEvent evt) -> {
+                courantCheck.setSelected(!epargneCheck.isSelected());
+            });
+            JLabel lab = new JLabel("Choisissez le type du compte\n");
+            lab.setFont(new Font("Liberation Sans", 1, 24));
+            Object[] obj = {lab, courantCheck, "", epargneCheck};
+            int n = JOptionPane.showConfirmDialog(null, obj, "Nouveau compte", 2, 0, new ImageIcon(getClass().getResource("/account.png")));
+            if (n == 0 && (courantCheck.isSelected() || epargneCheck.isSelected())) {
+                String query = "insert into account(solde,interet,isNormal,userID) values (0,10,?,?)";
+                PreparedStatement ps = conn.prepareStatement(query);
+                if (courantCheck.isSelected()) {
+                    ps.setInt(1, 1);
+                } else {
+                    ps.setInt(1, 0);
+                }
+                ps.setString(2, userList.get(userComboBox.getSelectedIndex()));
+                int rst = ps.executeUpdate();
+                if (rst != 0) {
+                    System.out.println("Compte cree avec succes");
+                }
+            }
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
