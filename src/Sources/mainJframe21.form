@@ -490,7 +490,6 @@
                   <Image iconType="3" name="/edit.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Modifier"/>
-                <Property name="toolTipText" type="java.lang.String" value="Modifier l&apos;interet du compte"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editMensualityButtonActionPerformed"/>
@@ -502,7 +501,6 @@
                   <Image iconType="3" name="/edit.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Modifier"/>
-                <Property name="toolTipText" type="java.lang.String" value="Modifier l&apos;interet du compte"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editIAmountButtonActionPerformed"/>

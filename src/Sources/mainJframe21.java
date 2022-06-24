@@ -6,8 +6,6 @@ package Sources;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -211,7 +209,6 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
         editMensualityButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
         editMensualityButton.setText("Modifier");
-        editMensualityButton.setToolTipText("Modifier l'interet du compte");
         editMensualityButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editMensualityButtonActionPerformed(evt);
@@ -220,7 +217,6 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
         editIAmountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
         editIAmountButton.setText("Modifier");
-        editIAmountButton.setToolTipText("Modifier l'interet du compte");
         editIAmountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editIAmountButtonActionPerformed(evt);
@@ -407,7 +403,6 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
     private void retraitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retraitButtonActionPerformed
         try {
-            System.out.println("Entrer dans la fonction retrait");
             SpinnerNumberModel sModel = new SpinnerNumberModel(1, 1, actuAccountSolde, 1);
             JSpinner spinner = new JSpinner(sModel);
             int option = JOptionPane.showOptionDialog(null, spinner, "Entrer le montant a retirer", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(""), null, null);
@@ -434,7 +429,6 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
     private void depotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depotButtonActionPerformed
         try {
-            System.out.println("Entrer dans la fonction depot");
             SpinnerNumberModel sModel = new SpinnerNumberModel(1, 1, 1000000, 1);
             JSpinner spinner = new JSpinner(sModel);
             int option = JOptionPane.showOptionDialog(null, spinner, "Entrer le montant a deposer", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(""), null, null);
@@ -523,13 +517,12 @@ public final class mainJframe21 extends javax.swing.JFrame {
 
     private void editInteretButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editInteretButtonActionPerformed
         try {
-            SpinnerNumberModel sModel = new SpinnerNumberModel(1, 1, 100, 1);
+            SpinnerNumberModel sModel = new SpinnerNumberModel(1, 1, 100000, 1);
             JSpinner spinner = new JSpinner(sModel);
-            int option = JOptionPane.showOptionDialog(null, spinner, "Entrer le montant a deposer", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(""), null, null);
+            int option = JOptionPane.showOptionDialog(null, spinner, "Entrer le nouvel interet", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(""), null, null);
             if (option == JOptionPane.OK_OPTION) {
-                String query = "UPDATE account SET interet =" + (double) spinner.getValue() + " WHERE accountID=?";
+                String query = "UPDATE account SET interet =" + (int) spinner.getValue() + " WHERE accountID="+actuAccounIDtList.get(compteComboBox.getSelectedIndex());
                 PreparedStatement ps = conn.prepareStatement(query);
-                ps.setString(1, actuAccounIDtList.get(compteComboBox.getSelectedIndex()));
                 ps.executeUpdate();
                 initTableau();
             }
@@ -539,43 +532,36 @@ public final class mainJframe21 extends javax.swing.JFrame {
     }//GEN-LAST:event_editInteretButtonActionPerformed
 
     private void editMensualityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMensualityButtonActionPerformed
-        // TODO add your handling code here:
+      try {
+            SpinnerNumberModel sModel = new SpinnerNumberModel(1, 1, 1000000, 1);
+            JSpinner spinner = new JSpinner(sModel);
+            int option = JOptionPane.showOptionDialog(null, spinner, "Entrer la nouvelle mensualite", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(""), null, null);
+            if (option == JOptionPane.OK_OPTION) {
+                String query = "UPDATE loan SET mensuality =" + (int) spinner.getValue() + " WHERE loanID="+actuLoanIDtList.get(loanComboBox.getSelectedIndex());
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.executeUpdate();
+                initLoanTab();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }//GEN-LAST:event_editMensualityButtonActionPerformed
 
     private void editIAmountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editIAmountButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editIAmountButtonActionPerformed
-
-    /*public static void main(String args[]) throws UnsupportedLookAndFeelException {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    try {
+            SpinnerNumberModel sModel = new SpinnerNumberModel(1, 1, 10000000, 1);
+            JSpinner spinner = new JSpinner(sModel);
+            int option = JOptionPane.showOptionDialog(null, spinner, "Entrer le nouveau montant", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(""), null, null);
+            if (option == JOptionPane.OK_OPTION) {
+                String query = "UPDATE loan SET amount =" + (int) spinner.getValue() + " WHERE loanID="+actuLoanIDtList.get(loanComboBox.getSelectedIndex());
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.executeUpdate();
+                initLoanTab();
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mainJframe21.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mainJframe21.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mainJframe21.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mainJframe21.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
-        //</editor-fold>
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    mainJframe21 j=new mainJframe21(this.conn);
-                           j.setVisible(true);
-                } catch (SQLException ex) {
-                   JOptionPane.showMessageDialog(null,ex);
-                }
-            }
-        });
-    }*/
+    }//GEN-LAST:event_editIAmountButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAccountButton;
@@ -643,7 +629,6 @@ public final class mainJframe21 extends javax.swing.JFrame {
     }
 
     public void initcomboxUser() throws SQLException {
-        System.out.println("Entre dans la fonction initUser");
         userComboBox.removeAllItems();
         userComboBox.removeAll();
         userList.clear();
@@ -706,7 +691,6 @@ public final class mainJframe21 extends javax.swing.JFrame {
     }
 
     private void initLoan() {
-        System.out.println("Entrer dans la fonction initComboLoan");
         actuLoanIDtList.clear();
         loanComboBox.removeAll();
         loanComboBox.removeAllItems();
@@ -741,7 +725,7 @@ public final class mainJframe21 extends javax.swing.JFrame {
                 amountIntLabel.setText(""+rst.getInt("amount"));
                 mensualiteIntLabel.setText(""+rst.getInt("mensuality"));}
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex+"Au niveau du loanCombo");
+                JOptionPane.showMessageDialog(null, ex);
             }
         }
     }
@@ -831,6 +815,6 @@ public final class mainJframe21 extends javax.swing.JFrame {
         initComboxCompte();
         initTableau();
         initLoan();
-        //initLoanTab();
+        initLoanTab();
     }
 }
