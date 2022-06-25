@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import Sources.mainJframe21;
+import Sources.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
@@ -17,11 +17,11 @@ public class connexionPage extends javax.swing.JFrame {
         setVisible(true);
         initComponents();
         conn = sqlConnection.dbConnector();
-        mmain = new mainJframe21(conn);
+        mmain = new mainJframe(conn);
         mmain.setVisible(false);
     }
 
-    private mainJframe21 mmain;
+    private mainJframe mmain;
     private Connection conn;
 
     /**
