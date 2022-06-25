@@ -368,11 +368,11 @@ public final class mainJframe21 extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addGap(177, 177, 177)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -678,6 +678,12 @@ public final class mainJframe21 extends javax.swing.JFrame {
                 empruntLabel.setEnabled(false);
                 loanComboBox.setEnabled(false);
                 addLoanButton.setEnabled(false);
+                amountLabel.setEnabled(false);
+                editIAmountButton.setEnabled(false);
+                amountIntLabel.setText("");
+                mensualityLabel.setEnabled(false);
+                mensualiteIntLabel.setText("");
+                editMensualityButton.setEnabled(false);
             } else {
                 typeCompteLabel.setText("Compte Courant");
             }
